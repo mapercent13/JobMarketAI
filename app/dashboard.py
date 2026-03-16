@@ -104,3 +104,37 @@ if st.button("Predict Salary"):
 
     prediction = model.predict(sample)[0]
     st.success(f"Predicted Average Salary: {prediction:,.2f}")
+
+    st.markdown("---")
+st.header("Skill Gap Analysis")
+
+selected_role = st.selectbox("Choose a Target Role", sorted(df["job_title"].unique()), key="role_gap")
+
+user_skills_input = st.text_input(
+    "Enter Your Skills (comma-separated)",
+    placeholder="Python, SQL, Excel"
+)
+
+if st.button("Analyze Skill Gap"):
+    role_data = df[df["job_title"] == selected_role]
+
+    role_skills = role_data["skills"].str.split(",").explode().str.strip().unique()
+    role_skills_set = set(role_skills)
+
+    user_skills = [skill.strip() for skill in user_skills_input.split(",") if skill.strip()]
+    user_skills_set = set(user_skills)
+
+    matched_skills = sorted(user_skills_set.intersection(role_skills_set))
+    missing_skills = sorted(role_skills_set.difference(user_skills_set))
+
+    if len(role_skills_set) > 0:
+        match_score = (len(matched_skills) / len(role_skills_set)) * 100
+    else:
+        match_score = 0
+
+    st.subheader("Skill Gap Results")
+    st.write(f"**Target Role:** {selected_role}")
+    st.write(f"**Your Skills:** {', '.join(user_skills) if user_skills else 'None entered'}")
+    st.write(f"**Matched Skills:** {', '.join(matched_skills) if matched_skills else 'None'}")
+    st.write(f"**Missing Skills:** {', '.join(missing_skills) if missing_skills else 'None'}")
+    st.write(f"**Match Score:** {match_score:.1f}%")
