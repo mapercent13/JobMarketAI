@@ -1,0 +1,7 @@
+job_title,company,location,salary_min,salary_max,experience_level,skills
+Data Analyst,TechCorp,Johannesburg,25000,40000,Junior,"Python, SQL, Excel"
+Data Scientist,AI Solutions,Cape Town,45000,70000,Mid,"Python, Machine Learning, SQL"
+Machine Learning Engineer,FutureTech,Remote,60000,90000,Senior,"Python, TensorFlow, Deep Learning"
+Business Analyst,FinServe,Johannesburg,30000,45000,Junior,"SQL, Excel, Power BI"
+Data Engineer,CloudData,Durban,50000,75000,Mid,"Python, Spark, SQL"
+AI Engineer,NextGen AI,Remote,70000,100000,Senior,"Python, Deep Learning, PyTorch"
